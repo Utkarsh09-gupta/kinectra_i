@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import {
@@ -249,6 +249,41 @@ function FadeIn({ children, delay = 0, className = "" }: { children: React.React
     >
       {children}
     </motion.div>
+  );
+}
+
+// ─── Rotating Text Component for Hero Headline ──────────────────────
+function RotatingHeadlineText() {
+  const words = [
+    "Decoded in Real Time.",
+    "Analyzed Frame-by-Frame.",
+    "Elevated by Biomechanical AI.",
+    "Scored for Peak Performance.",
+  ];
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % words.length);
+    }, 3200);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <span className="inline-block relative h-[1.2em] overflow-hidden align-bottom">
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={words[index]}
+          initial={{ y: "100%", opacity: 0 }}
+          animate={{ y: "0%", opacity: 1 }}
+          exit={{ y: "-100%", opacity: 0 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          className="block bg-gradient-to-r from-primary via-amber-300 to-orange-400 bg-clip-text text-transparent font-semibold"
+        >
+          {words[index]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
   );
 }
 
@@ -751,7 +786,6 @@ export default function Home() {
 
           <div className="border-t pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
             <p>© {new Date().getFullYear()} Kinectra Biomechanical Systems. All rights reserved.</p>
-            <p>Made in partnership with Advanced Agentic Coding.</p>
           </div>
         </div>
       </footer>
