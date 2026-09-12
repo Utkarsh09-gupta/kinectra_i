@@ -342,15 +342,6 @@ export default function Home() {
           <div className="container relative z-10 mx-auto px-4 md:px-6 py-16 grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
             {/* Left: copy */}
             <div className="space-y-8">
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-muted/40 px-3.5 py-1.5 text-xs font-mono uppercase tracking-wider text-muted-foreground font-semibold"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                Real-Time Pose Estimation · Browser-Native
-              </motion.div>
 
               <div className="space-y-5">
                 <motion.h1
